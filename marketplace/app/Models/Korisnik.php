@@ -9,4 +9,16 @@ class Korisnik extends Model
 {
     /** @use HasFactory<\Database\Factories\KorisnikFactory> */
     use HasFactory;
+
+    public $timestamps=false;
+    
+    public function aukcija(){
+        return $this->hasMany(Aukcija::class,'idKorisnik');
+    }
+
+    
+    public function kupovina(){
+        return $this->hasMany(Kupovina::class,'idKorisnik');
+    }
+
 }

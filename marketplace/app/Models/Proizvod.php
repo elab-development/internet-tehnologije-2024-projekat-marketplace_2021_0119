@@ -9,4 +9,6 @@ class Proizvod extends Model
 {
     /** @use HasFactory<\Database\Factories\ProizvodFactory> */
     use HasFactory;
+    protected $fillable=['naziv','cena'];
+    public $timestamps=false;
 }
