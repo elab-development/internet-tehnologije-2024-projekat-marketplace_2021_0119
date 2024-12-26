@@ -19,9 +19,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::resource('proizvods', ProizvodController::class);
+ 
 
 Route::get('/aukcijas', [AukcijaController::class, 'index']); // GET - lista aukcija
 Route::post('/aukcijas', [AukcijaController::class, 'store']); // POST - kreiranje aukcije
+Route::get('/aukcijas/filter', [AukcijaController::class, 'filterIndex']); 
+
 Route::get('/aukcijas/{id}', [AukcijaController::class, 'show']); // GET - prikaz detalja aukcije
 
 Route::get('/users', [UserController::class, 'index']);

@@ -6,6 +6,8 @@ use App\Models\Aukcija;
 use App\Http\Requests\StoreAukcijaRequest;
 use App\Http\Requests\UpdateAukcijaRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class AukcijaController extends Controller
@@ -16,8 +18,31 @@ class AukcijaController extends Controller
     public function index()
     {
          // Vraća sve aukcije sa povezanim korisnicima i proizvodima
-         $aukcije = Aukcija::with(['user', 'proizvod'])->get();
+         $aukcije = Aukcija::all();
          return response()->json($aukcije);
+    }
+
+    public function filterIndex(Request $request){
+       
+
+        $query = Aukcija::query();
+
+        
+
+        if ($request->has('idKorisnik')) {
+            $query->where('idKorisnik', $request->idKorisnik);
+        }
+
+
+        if ($request->has('idProizvod')) {
+            $query->where('idProizvod', $request->idProizvod);
+        }
+
+        $aukcija = $query->paginate(3);
+    
+       
+
+        return response()->json($aukcija);
     }
 
     /**
@@ -57,7 +82,7 @@ class AukcijaController extends Controller
     public function show($id)
     {
          // Pronađi aukciju sa povezanim korisnikom i proizvodom
-         $aukcija = Aukcija::with(['user', 'proizvod'])->find($id);
+         $aukcija = Aukcija::with(['korisnik', 'proizvod'])->find($id);
         
          if (!$aukcija) {
              return response()->json(['error' => 'Aukcija nije pronađena'], 404);

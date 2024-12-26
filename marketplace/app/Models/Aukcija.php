@@ -20,6 +20,6 @@ class Aukcija extends Model
      }
  
      public function proizvod(){
-         return $this->belongsTo(Proizvod::class,'id_proizvod');
+         return $this->belongsTo(Proizvod::class,'idProizvod');
      }
 }

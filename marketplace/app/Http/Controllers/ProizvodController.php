@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Proizvod;
 use App\Http\Requests\StoreProizvodRequest;
 use App\Http\Requests\UpdateProizvodRequest;
+use App\Http\Resources\ProizvodResource;
+use App\Http\Resources\UserResource;
 
 class ProizvodController extends Controller
 {
@@ -16,6 +18,9 @@ class ProizvodController extends Controller
         // Vraća sve proizvode u JSON formatu
         return response()->json(Proizvod::all());
     }
+
+    
+   
 
     /**
      * Show the form for creating a new resource.
