@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Aukcija;
 use App\Http\Requests\StoreAukcijaRequest;
 use App\Http\Requests\UpdateAukcijaRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class AukcijaController extends Controller
 {
@@ -14,7 +16,7 @@ class AukcijaController extends Controller
     public function index()
     {
          // Vraća sve aukcije sa povezanim korisnicima i proizvodima
-         $aukcije = Aukcija::with(['korisnik', 'proizvod'])->get();
+         $aukcije = Aukcija::with(['user', 'proizvod'])->get();
          return response()->json($aukcije);
     }
 
@@ -32,13 +34,20 @@ class AukcijaController extends Controller
     public function store(StoreAukcijaRequest $request)
     {
         // Validacija podataka
-        $validated = $request->validate([
-            'idKorisnik' => 'required|exists:korisniks,id',  // Proverite da korisnik postoji
+        $validator =Validator::make($request->all(),[
+            'id' => 'required|exists:korisniks,id',  // Proverite da korisnik postoji
             'idProizvod' => 'required|exists:proizvods,id',  // Proverite da proizvod postoji
         ]);
 
+        if($validator->fails()){
+            return response()->json($validator->errors());
+        }
+
         // Kreira aukciju
-        $aukcija = Aukcija::create($validated);
+        $aukcija = Aukcija::create([
+            'id' => Auth::user()->id,
+            'idProizvod' =>Auth::proizvod()->id,
+        ]);
         return response()->json($aukcija, 201);
     }
 
@@ -48,7 +57,7 @@ class AukcijaController extends Controller
     public function show($id)
     {
          // Pronađi aukciju sa povezanim korisnikom i proizvodom
-         $aukcija = Aukcija::with(['korisnik', 'proizvod'])->find($id);
+         $aukcija = Aukcija::with(['user', 'proizvod'])->find($id);
         
          if (!$aukcija) {
              return response()->json(['error' => 'Aukcija nije pronađena'], 404);
@@ -78,7 +87,7 @@ class AukcijaController extends Controller
 
         // Validacija podataka
         $validated = $request->validate([
-            'idKorisnik' => 'required|exists:korisniks,id',
+            'id' => 'required|exists:users,id',
             'idProizvod' => 'required|exists:proizvods,id',
         ]);
 

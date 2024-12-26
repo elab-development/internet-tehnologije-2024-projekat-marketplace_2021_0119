@@ -2,40 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Korisnik;
-use App\Http\Requests\StoreKorisnikRequest;
-use App\Http\Requests\UpdateKorisnikRequest;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
+use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class KorisnikController extends Controller
+class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
          // Vraća listu svih korisnika
-         $korisnici = Korisnik::all();
-         return response()->json($korisnici);
+         $users = User::all();
+         return response()->json($users);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreKorisnikRequest $request)
+    public function store(StoreUserRequest $request)
     {
         // Validacija podataka
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:korisnici,email',
+            'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:8',
         ]);
 
@@ -43,29 +31,25 @@ class KorisnikController extends Controller
         $validated['password'] = Hash::make($validated['password']);
 
         // Kreiranje korisnika
-        $korisnik = Korisnik::create($validated);
-        return response()->json($korisnik, 201);
+        $users = User::create($validated);
+        return response()->json($users, 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show($id)
     {
         // Pronaći korisnika po ID-u
-        $korisnik = Korisnik::find($id);
+        $users = User::find($id);
 
-        if (!$korisnik) {
+        if (!$users) {
             return response()->json(['error' => 'Korisnik nije pronađen'], 404);
         }
 
-        return response()->json($korisnik);
+        return response()->json($users);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Korisnik $korisnik)
+
+    public function edit(User $user)
     {
         //
     }
@@ -73,18 +57,17 @@ class KorisnikController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateKorisnikRequest $request, Korisnik $korisnik,$id)
+    public function update(UpdateUserRequest $request, User $user,$id)
     {
-        $korisnik = Korisnik::find($id);
+        $user = User::find($id);
 
-        if (!$korisnik) {
+        if (!$user) {
             return response()->json(['error' => 'Korisnik nije pronađen'], 404);
         }
 
         // Validacija podataka
         $validated = $request->validate([
-            'ime' => 'required|string|max:255',
-            'prezime' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'email' => 'required|email|unique:korisnici,email,' . $id,  // omogući izmenu email-a korisniku sa određenim ID
             'password' => 'nullable|string|min:8',  // Lozinka nije obavezna pri ažuriranju
         ]);
@@ -95,8 +78,8 @@ class KorisnikController extends Controller
         }
 
         // Ažuriramo korisnika
-        $korisnik->update($validated);
-        return response()->json($korisnik);
+        $user->update($validated);
+        return response()->json($user);
     }
 
     /**
@@ -104,14 +87,14 @@ class KorisnikController extends Controller
      */
     public function destroy($id)
     {
-        $korisnik = Korisnik::find($id);
+        $user = User::find($id);
 
-        if (!$korisnik) {
+        if (!$user) {
             return response()->json(['error' => 'Korisnik nije pronađen'], 404);
         }
 
         // Brisanje korisnika
-        $korisnik->delete();
+        $user->delete();
         return response()->json(['message' => 'Korisnik uspešno obrisan']);
     }
 }

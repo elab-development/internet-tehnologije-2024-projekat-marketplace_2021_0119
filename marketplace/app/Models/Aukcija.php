@@ -4,16 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 class Aukcija extends Model
 {
-    use HasFactory;
+    use HasApiTokens, HasFactory, Notifiable;
 
     public $timestamps=false;
 
     public function korisnik() {
 
-        return $this->belongsTo(Korisnik::class, 'idKorisnik');
+        return $this->belongsTo(User::class, 'idKorisnik');
  
      }
  

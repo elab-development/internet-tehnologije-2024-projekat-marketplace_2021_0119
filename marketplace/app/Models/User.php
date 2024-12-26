@@ -42,4 +42,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+    public function aukcija(){
+        return $this->hasMany(Aukcija::class,'idKorisnik');
+    }
+
+    
+    public function kupovina(){
+        return $this->hasMany(Kupovina::class,'idKorisnik');
+    }
 }
