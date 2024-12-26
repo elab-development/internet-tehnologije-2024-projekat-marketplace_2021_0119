@@ -65,7 +65,7 @@ class ProizvodController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProizvodRequest $request, Proizvod $proizvod,$id)
+    public function update(UpdateProizvodRequest $request, $id)
     {
         $product = Proizvod::find($id);
 
