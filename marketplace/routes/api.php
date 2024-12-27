@@ -2,11 +2,18 @@
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\AukcijaController;
+use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\KorisnikController;
+use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\ProizvodController;
 use App\Http\Controllers\UserController;
+use App\Models\User;
+use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
+use Nette\Utils\Strings;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +31,12 @@ Route::resource('proizvods', ProizvodController::class);
 Route::get('/aukcijas', [AukcijaController::class, 'index']); // GET - lista aukcija
 Route::post('/aukcijas', [AukcijaController::class, 'store']); // POST - kreiranje aukcije
 Route::get('/aukcijas/filter', [AukcijaController::class, 'filterIndex']); 
+
+
+Route::post('/forgot-password', [PasswordResetController::class, 'forgotPassword'])->middleware('guest')->name('password.email');
+Route::post('/reset-password', [PasswordResetController::class,'resetPassword'])->middleware('guest')->name('password.update');
+
+
 
 Route::get('/aukcijas/{id}', [AukcijaController::class, 'show']); // GET - prikaz detalja aukcije
 
