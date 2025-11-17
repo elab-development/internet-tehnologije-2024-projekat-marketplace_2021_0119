@@ -1,0 +1,65 @@
+.product-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  /* providna bela podloga koja se uklapa sa tvojim login stilom */
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  border-radius: 15px;
+
+  color: whitesmoke;
+  padding: 20px;
+  margin: 15px;
+  width: 250px;
+  height: 330px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+
+  backdrop-filter: blur(8px); /* stakleni efekat */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+
+.product-image {
+  width: 80%;
+  height: 150px;
+  object-fit: contain;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.1);
+  padding: 10px;
+}
+
+.product-card h2 {
+  font-size: 1.2rem;
+  margin: 10px 0 5px;
+}
+
+.product-card p {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+/* Dugme unutar kartice */
+.product-button {
+  width: 80%;
+  background: linear-gradient(135deg, #00f260, #0575e6);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.product-button:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
