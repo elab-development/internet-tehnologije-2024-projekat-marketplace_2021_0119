@@ -1,0 +1,78 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(to right, #67b26f, #4ca2cd);
+  min-height: 100vh;
+  color: whitesmoke;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  width: 80%;
+  background: linear-gradient(135deg, #00f260, #0575e6);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 16px;
+}
+
+button:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+input {
+  width: 80%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  outline: none;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+}
+
+input::placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+  color: whitesmoke;
+}
+
+.error {
+  color: #ff6b6b;
+  background: rgba(255, 107, 107, 0.15);
+  padding: 10px;
+  border-radius: 8px;
+  margin: 10px 0;
+}

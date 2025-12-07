@@ -1,0 +1,206 @@
+.header {
+  background-color: #333;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  height: 70px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  font-size: 1.3rem;
+  color: #f2f2f2;
+}
+
+.header-logo svg {
+  width: 24px;
+  height: 24px;
+  color: #00f260;
+}
+
+.header-nav {
+  display: flex;
+  gap: 20px;
+}
+
+.header-nav a {
+  color: #f2f2f2;
+  text-align: center;
+  padding: 10px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: 0.3s;
+}
+
+.header-nav a:hover {
+  background-color: #ddd;
+  color: black;
+  border-radius: 5px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.cart-button {
+  position: relative;
+  background: transparent;
+  border: none;
+  color: #f2f2f2;
+  cursor: pointer;
+  padding: 8px;
+  width: auto;
+  transition: 0.3s;
+}
+
+.cart-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  transform: scale(1.1);
+}
+
+.cart-button svg {
+  width: 22px;
+  height: 22px;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.user-button {
+  background: transparent;
+  border: none;
+  color: #f2f2f2;
+  cursor: pointer;
+  padding: 8px;
+  width: auto;
+  transition: 0.3s;
+}
+
+.user-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  transform: scale(1.1);
+}
+
+.user-button svg {
+  width: 22px;
+  height: 22px;
+}
+
+.user-dropdown {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  background: rgba(51, 51, 51, 0.95);
+  border-radius: 10px;
+  padding: 10px;
+  min-width: 200px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
+}
+
+.user-info {
+  padding: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 5px;
+}
+
+.user-info p {
+  margin: 5px 0;
+  color: #f2f2f2;
+}
+
+.user-name {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.user-email {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.dropdown-item {
+  padding: 10px;
+  color: #f2f2f2;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dropdown-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-item.logout {
+  color: #ff6b6b;
+}
+
+.dropdown-item svg {
+  width: 16px;
+  height: 16px;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.auth-buttons button {
+  width: auto;
+  padding: 8px 20px;
+  font-size: 14px;
+}
+
+.auth-buttons .login-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.auth-buttons .login-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+  .header-nav {
+    display: none;
+  }
+}
